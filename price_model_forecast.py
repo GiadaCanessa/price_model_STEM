@@ -30,7 +30,7 @@ produzione_rinnovabili = st.sidebar.slider(
 costo_gas = st.sidebar.slider("Costo del gas naturale (€/MWh)", min_value=20, max_value=90, value=40)
 
 # Pesi corretti dei parametri
-peso_domanda = {"Picco (giorno lavorativo)": 10, "Fuori-picco (notte o weekend)": -5}
+peso_domanda = {"Picco (giorno lavorativo)": 3, "Fuori-picco (notte o weekend)": -2}
 peso_rinnovabili = -0.1  # Ogni 10% di produzione rinnovabile riduce il prezzo
 peso_gas = 0.1  # Incremento lineare in base al costo del gas
 
