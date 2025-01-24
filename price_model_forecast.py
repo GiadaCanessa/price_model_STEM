@@ -33,8 +33,8 @@ temperatura = st.sidebar.slider("Temperatura media (°C)", min_value=-10, max_va
 costo_gas = st.sidebar.slider("Costo del gas naturale (€/MWh)", min_value=10, max_value=100, value=50)
 
 # Pesi corretti dei parametri
-peso_domanda = {"Picco (giorno lavorativo)": 10, "Fuori-picco (notte o weekend)": -5}
-peso_rinnovabili = -0.4  # Ogni 10% di produzione rinnovabile riduce il prezzo
+peso_domanda = {"Picco (giorno lavorativo)": 5, "Fuori-picco (notte o weekend)": -2}
+peso_rinnovabili = -0.3  # Ogni 10% di produzione rinnovabile riduce il prezzo
 peso_temperatura = 0.2  # Ogni grado sopra i 25°C aumenta la domanda
 peso_gas = 0.1  # Incremento lineare in base al costo del gas
 
