@@ -23,7 +23,7 @@ orario_e_giorno = st.sidebar.selectbox(
 
 # Produzione da rinnovabili (% della capacità massima)
 produzione_rinnovabili = st.sidebar.slider(
-    "Produzione da rinnovabili (% capacità massima)", min_value=0, max_value=100, value=30
+    "Produzione da rinnovabili (% capacità massima)", min_value=0, max_value=100, value=45
 )
 
 # Temperatura media (°C)
@@ -33,7 +33,7 @@ produzione_rinnovabili = st.sidebar.slider(
 costo_gas = st.sidebar.slider("Costo del gas naturale (€/MWh)", min_value=20, max_value=90, value=40)
 
 # Pesi corretti dei parametri
-peso_domanda = {"Picco (giorno lavorativo)": 5, "Fuori-picco (notte o weekend)": -2}
+peso_domanda = {"Picco (giorno lavorativo)": 3, "Fuori-picco (notte o weekend)": -1}
 peso_rinnovabili = -0.1  # Ogni 10% di produzione rinnovabile riduce il prezzo
 #peso_temperatura = 0.2  # Ogni grado sopra i 25°C aumenta la domanda
 peso_gas = 0.1  # Incremento lineare in base al costo del gas
