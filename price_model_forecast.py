@@ -27,7 +27,7 @@ produzione_rinnovabili = st.sidebar.slider(
 )
 
 # Temperatura media (°C)
-temperatura = st.sidebar.slider("Temperatura media (°C)", min_value=-10, max_value=40, value=18)
+#temperatura = st.sidebar.slider("Temperatura media (°C)", min_value=-10, max_value=40, value=18)
 
 # Costo del gas naturale
 costo_gas = st.sidebar.slider("Costo del gas naturale (€/MWh)", min_value=10, max_value=100, value=50)
@@ -35,11 +35,11 @@ costo_gas = st.sidebar.slider("Costo del gas naturale (€/MWh)", min_value=10, 
 # Pesi corretti dei parametri
 peso_domanda = {"Picco (giorno lavorativo)": 5, "Fuori-picco (notte o weekend)": -2}
 peso_rinnovabili = -0.3  # Ogni 10% di produzione rinnovabile riduce il prezzo
-peso_temperatura = 0.2  # Ogni grado sopra i 25°C aumenta la domanda
+#peso_temperatura = 0.2  # Ogni grado sopra i 25°C aumenta la domanda
 peso_gas = 0.1  # Incremento lineare in base al costo del gas
 
 # Simulazione Monte Carlo
-def simula_prezzi(prezzo_iniziale, orario_e_giorno, rinnovabili, temperatura, gas, giorni, simulazioni):
+def simula_prezzi(prezzo_iniziale, orario_e_giorno, rinnovabili,  gas, giorni, simulazioni):
     dt = 1  # Giorno
     prezzi = np.zeros((giorni, simulazioni))
     prezzi[0] = prezzo_iniziale
@@ -50,7 +50,7 @@ def simula_prezzi(prezzo_iniziale, orario_e_giorno, rinnovabili, temperatura, ga
         impatto = (
             peso_domanda[orario_e_giorno]
             + peso_rinnovabili * rinnovabili
-            + peso_temperatura * max(temperatura - 25, 0)  # Aumenta sopra i 25°C
+            #+ peso_temperatura * max(temperatura - 25, 0)  # Aumenta sopra i 25°C
             + peso_gas * gas
         )
         # Calcolo del prezzo con volatilità casuale
@@ -68,7 +68,7 @@ simulazioni = st.sidebar.number_input("Numero di simulazioni", min_value=10, max
 
 # Genera simulazioni
 prezzi_simulati = simula_prezzi(
-    prezzo_iniziale, orario_e_giorno, produzione_rinnovabili, temperatura, costo_gas, giorni, simulazioni
+    prezzo_iniziale, orario_e_giorno, produzione_rinnovabili,  costo_gas, giorni, simulazioni
 )
 
 # Calcolo del forecast medio
