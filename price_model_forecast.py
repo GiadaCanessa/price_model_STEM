@@ -62,7 +62,7 @@ def simula_prezzi(prezzo_iniziale, orario_e_giorno, rinnovabili, gas, giorni, si
     return prezzi
 
 # Input studenti
-giorni = st.sidebar.number_input("Giorni di forecast", min_value=1, max_value=30, value=20)
+giorni = st.sidebar.number_input("Giorni di forecast", min_value=1, max_value=365, value=30)
 simulazioni = st.sidebar.number_input("Numero di simulazioni", min_value=10, max_value=1000, value=400)
 
 # Genera simulazioni
