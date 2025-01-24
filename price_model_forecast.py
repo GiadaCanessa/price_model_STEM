@@ -33,10 +33,10 @@ temperatura = st.sidebar.slider("Temperatura media (°C)", min_value=-10, max_va
 costo_gas = st.sidebar.slider("Costo del gas naturale (€/MWh)", min_value=10, max_value=200, value=50)
 
 # Pesi corretti dei parametri
-peso_domanda = {"Picco (giorno lavorativo)": 20, "Fuori-picco (notte o weekend)": -10}
+peso_domanda = {"Picco (giorno lavorativo)": 10, "Fuori-picco (notte o weekend)": -5}
 peso_rinnovabili = -0.5  # Ogni 10% di produzione rinnovabile riduce il prezzo
 peso_temperatura = 0.2  # Ogni grado sopra i 25°C aumenta la domanda
-peso_gas = 0.3  # Incremento lineare in base al costo del gas
+peso_gas = 0.5  # Incremento lineare in base al costo del gas
 
 # Simulazione Monte Carlo
 def simula_prezzi(prezzo_iniziale, orario_e_giorno, rinnovabili, temperatura, gas, giorni, simulazioni):
@@ -75,7 +75,6 @@ prezzi_simulati = simula_prezzi(
 prezzo_medio = prezzi_simulati.mean(axis=1)
 
 # Visualizzazione del grafico
-st.subheader("Forecast del prezzo del Power")
 fig, ax = plt.subplots(figsize=(10, 6))
 
 # Traccia tutte le simulazioni
