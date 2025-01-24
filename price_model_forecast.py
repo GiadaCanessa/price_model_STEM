@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Titolo dell'app
-st.title("Forecast del prezzo del Power")
+st.title("Forecast del prezzo Power")
 
 # Parametri regolabili dagli studenti
 st.sidebar.header("Parametri di simulazione")
@@ -82,7 +82,7 @@ for i in range(min(simulazioni, 50)):  # Mostra solo le prime 50 simulazioni
 
 # Traccia il forecast medio
 ax.plot(prezzo_medio, color='blue', linewidth=2, label='Forecast medio')
-ax.set_title("Simulazione del prezzo del Power")
+ax.set_title("Simulazione Prezzo Power")
 ax.set_xlabel("Giorni")
 ax.set_ylabel("Prezzo (€/MWh)")
 ax.legend()
