@@ -13,7 +13,7 @@ st.title("Forecast del prezzo del Power")
 
 # Parametri regolabili dagli studenti
 st.sidebar.header("Parametri di simulazione")
-prezzo_iniziale = st.sidebar.number_input("Prezzo iniziale (€/MWh)", min_value=30, max_value=300, value=100)
+prezzo_iniziale = st.sidebar.number_input("Prezzo iniziale (€/MWh)", min_value=30, max_value=200, value=100)
 
 # Parametro aggregato per domanda
 orario_e_giorno = st.sidebar.selectbox(
@@ -27,14 +27,14 @@ produzione_rinnovabili = st.sidebar.slider(
 )
 
 # Temperatura media (°C)
-temperatura = st.sidebar.slider("Temperatura media (°C)", min_value=-10, max_value=40, value=20)
+temperatura = st.sidebar.slider("Temperatura media (°C)", min_value=-10, max_value=40, value=18)
 
 # Costo del gas naturale
-costo_gas = st.sidebar.slider("Costo del gas naturale (€/MWh)", min_value=10, max_value=200, value=50)
+costo_gas = st.sidebar.slider("Costo del gas naturale (€/MWh)", min_value=10, max_value=100, value=50)
 
 # Pesi corretti dei parametri
 peso_domanda = {"Picco (giorno lavorativo)": 10, "Fuori-picco (notte o weekend)": -5}
-peso_rinnovabili = -0.1  # Ogni 10% di produzione rinnovabile riduce il prezzo
+peso_rinnovabili = -0.4  # Ogni 10% di produzione rinnovabile riduce il prezzo
 peso_temperatura = 0.2  # Ogni grado sopra i 25°C aumenta la domanda
 peso_gas = 0.1  # Incremento lineare in base al costo del gas
 
