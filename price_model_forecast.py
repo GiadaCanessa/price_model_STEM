@@ -26,20 +26,16 @@ produzione_rinnovabili = st.sidebar.slider(
     "Produzione da rinnovabili (% capacità massima)", min_value=0, max_value=100, value=45
 )
 
-# Temperatura media (°C)
-#temperatura = st.sidebar.slider("Temperatura media (°C)", min_value=-10, max_value=40, value=18)
-
 # Costo del gas naturale
 costo_gas = st.sidebar.slider("Costo del gas naturale (€/MWh)", min_value=20, max_value=90, value=40)
 
 # Pesi corretti dei parametri
-peso_domanda = {"Picco (giorno lavorativo)": 3, "Fuori-picco (notte o weekend)": -1}
+peso_domanda = {"Picco (giorno lavorativo)": 10, "Fuori-picco (notte o weekend)": -5}
 peso_rinnovabili = -0.1  # Ogni 10% di produzione rinnovabile riduce il prezzo
-#peso_temperatura = 0.2  # Ogni grado sopra i 25°C aumenta la domanda
 peso_gas = 0.1  # Incremento lineare in base al costo del gas
 
 # Simulazione Monte Carlo
-def simula_prezzi(prezzo_iniziale, orario_e_giorno, rinnovabili,  gas, giorni, simulazioni):
+def simula_prezzi(prezzo_iniziale, orario_e_giorno, rinnovabili, gas, giorni, simulazioni):
     dt = 1  # Giorno
     prezzi = np.zeros((giorni, simulazioni))
     prezzi[0] = prezzo_iniziale
@@ -50,7 +46,6 @@ def simula_prezzi(prezzo_iniziale, orario_e_giorno, rinnovabili,  gas, giorni, s
         impatto = (
             peso_domanda[orario_e_giorno]
             + peso_rinnovabili * rinnovabili
-            #+ peso_temperatura * max(temperatura - 25, 0)  # Aumenta sopra i 25°C
             + peso_gas * gas
         )
         # Calcolo del prezzo con volatilità casuale
@@ -63,12 +58,12 @@ def simula_prezzi(prezzo_iniziale, orario_e_giorno, rinnovabili,  gas, giorni, s
     return prezzi
 
 # Input studenti
-giorni = st.sidebar.number_input("Giorni di forecast", min_value=1, max_value=365, value=30)
-simulazioni = st.sidebar.number_input("Numero di simulazioni", min_value=10, max_value=500, value=100)
+giorni = st.sidebar.number_input("Giorni di forecast", min_value=1, max_value=30, value=20)
+simulazioni = st.sidebar.number_input("Numero di simulazioni", min_value=10, max_value=1000, value=400)
 
 # Genera simulazioni
 prezzi_simulati = simula_prezzi(
-    prezzo_iniziale, orario_e_giorno, produzione_rinnovabili,  costo_gas, giorni, simulazioni
+    prezzo_iniziale, orario_e_giorno, produzione_rinnovabili, costo_gas, giorni, simulazioni
 )
 
 # Calcolo del forecast medio
